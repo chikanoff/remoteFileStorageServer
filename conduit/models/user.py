@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(Model):
     __tablename__ = "users"
     username = Column(String(64), nullable=False, unique=True)
-    passwrod = Column(String(256), nullable=False)
+    password = Column(String(256), nullable=False)
     email = Column(String(256), nullable=False, unique=True)
     first_name = Column(String(64), nullable=False)
     last_name = Column(String(64), nullable=False)
@@ -17,9 +17,9 @@ class User(Model):
         return self.username
 
     @classmethod
-    def create(cls, username, passwrod, role="user"):
-        password_hash = generate_password_hash(passwrod)
-        instance = cls(username=username, passwrod=password_hash, role=role)
+    def create(cls, username, password, role="user"):
+        password_hash = generate_password_hash(password)
+        instance = cls(username=username, password=password_hash, role=role)
         return instance
 
     @classmethod

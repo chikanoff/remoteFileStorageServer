@@ -9,5 +9,12 @@ def main():
 
         db.drop_all()
         db.create_all()
-        # TODO
-        # User.create()
+
+        with open('sql/users.sql') as f:
+            for line in f.readlines():
+                db.session.execute(line)
+                db.session.commit()
+
+
+if __name__ == '__main__':
+    main()

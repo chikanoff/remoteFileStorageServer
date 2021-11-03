@@ -1,0 +1,10 @@
+insert into users (id, first_name, last_name, email, username, password, role) values (1, 'Nikaniki', 'Colegate', 'ncolegate0@oakley.com', 'ncolegate0', 'bn00Av', 'Engineer');
+insert into users (id, first_name, last_name, email, username, password, role) values (2, 'Thebault', 'Lippitt', 'tlippitt1@slashdot.org', 'tlippitt1', '32xwUoVuwnp', 'Construction Manager');
+insert into users (id, first_name, last_name, email, username, password, role) values (3, 'Sharron', 'Sneesby', 'ssneesby2@hhs.gov', 'ssneesby2', 'ZnO0EMT0', 'Construction Expeditor');
+insert into users (id, first_name, last_name, email, username, password, role) values (4, 'Piper', 'Jendricke', 'pjendricke3@desdev.cn', 'pjendricke3', 'GZuGfumodeO', 'Architect');
+insert into users (id, first_name, last_name, email, username, password, role) values (5, 'Doro', 'MacPhee', 'dmacphee4@adobe.com', 'dmacphee4', 'TTU2NYVJU2A', 'Estimator');
+insert into users (id, first_name, last_name, email, username, password, role) values (6, 'Lorne', 'Tuffell', 'ltuffell5@eventbrite.com', 'ltuffell5', '3Vweah', 'Construction Manager');
+insert into users (id, first_name, last_name, email, username, password, role) values (7, 'Tristan', 'Nannini', 'tnannini6@deliciousdays.com', 'tnannini6', 'PLkWzm1Gw0zo', 'Construction Foreman');
+insert into users (id, first_name, last_name, email, username, password, role) values (8, 'Amargo', 'Fiveash', 'afiveash7@mozilla.org', 'afiveash7', 'bneo4Dwp', 'Project Manager');
+insert into users (id, first_name, last_name, email, username, password, role) values (9, 'Ignacius', 'Featherstonehaugh', 'ifeatherstonehaugh8@patch.com', 'ifeatherstonehaugh8', 'jgsBIV9', 'Engineer');
+insert into users (id, first_name, last_name, email, username, password, role) values (10, 'Nicoli', 'Easseby', 'neasseby9@usda.gov', 'neasseby9', 'gYtjKlJGm0k8', 'Engineer');
