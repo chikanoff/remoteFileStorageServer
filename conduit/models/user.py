@@ -17,9 +17,10 @@ class User(Model):
         return self.username
 
     @classmethod
-    def create(cls, username, password, role="user"):
+    def create(cls, first_name, last_name, email, username, password, role="user"):
         password_hash = generate_password_hash(password)
-        instance = cls(username=username, password=password_hash, role=role)
+        instance = cls(first_name=first_name, last_name=last_name,
+                       email=email, username=username, password=password_hash, role=role)
         return instance
 
     @classmethod
@@ -31,7 +32,7 @@ class User(Model):
     def validate_user(cls, username, password):
         user = cls.get_by_username(username=username)
 
-        if user and user.check_password():
+        if user and user.check_password(password):
             return user
 
         return False
