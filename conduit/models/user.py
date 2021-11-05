@@ -1,5 +1,4 @@
 from enum import unique
-from flask_restx.utils import default_id
 from conduit.database import Column, String, Model
 from werkzeug.security import generate_password_hash, check_password_hash
 
