@@ -13,7 +13,7 @@ class User(Model):
     role = Column(String(32), default="user", nullable=False)
 
     def __repr__(self) -> str:
-        return self.username
+        return f'<User "{self.username}">'
 
     @classmethod
     def create(cls, first_name, last_name, email, username, password, role="user"):
