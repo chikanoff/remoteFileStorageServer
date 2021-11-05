@@ -47,3 +47,19 @@ class Login(Resource):
         print(username, password, remember)
         set_access_cookies(response, access_token)
         return response
+
+
+@ns.route("/register")
+class Register(Resource):
+    @ns.response(200, "Logged in successfully")
+    @ns.response(400, "Wrong request")
+    @ns.response(403, "Wrong username or password")
+    def post(self):
+        response = make_response()
+        firstName = request.json["firstName"]
+        lastName = request.json["lastName"]
+        email = request.json["email"]
+        username = request.json["username"]
+        password = request.json["password"]
+        print(firstName, lastName, email, username, password)
+        return response
