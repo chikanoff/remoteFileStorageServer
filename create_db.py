@@ -1,5 +1,4 @@
 from conduit.app import create_app, db
-import json
 
 
 def main():
@@ -11,17 +10,10 @@ def main():
         db.drop_all()
         db.create_all()
 
-        f = open('testData.json',)
-
-        # load json file with data
-        data = json.load(f)
-
-        # fill db users
-        for i in data['users']:
-            user = User.create(i['firstName'], i['lastName'], i['email'],
-                               i['username'], i['password'], i['role'])
-            db.session.add(user)
-            db.session.commit()
+        with open('sql/users.sql') as f:
+            for line in f.readlines():
+                db.session.execute(line)
+                db.session.commit()
 
 
 if __name__ == '__main__':
