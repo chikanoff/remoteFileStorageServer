@@ -22,6 +22,9 @@ class DevelopmentConfig:
     LOG_LEVEL = "DEBUG"
     LOG_FILE = f"{dp}/logs/dev.log"
 
+    # Files
+    FILES_FOLDER = f"{dp}/static/files"
+
 
 class ProductionConfig:
     # Basic configuration
@@ -36,3 +39,6 @@ class ProductionConfig:
     LOG_BACKTRACE = True
     LOG_LEVEL = "INFO"
     LOG_FILE = f"{dp}/logs/prod.log"
+
+    # Files
+    FILES_FOLDER = f"{dp}/static/files"
