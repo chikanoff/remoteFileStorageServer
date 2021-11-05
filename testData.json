@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "firstName": "Daniil",
+      "lastName": "Chykanau",
+      "email": "danyachikanoff@gmail.com",
+      "username": "chikanoff",
+      "password": "admin1",
+      "role": "Administrator"
+    },
+    {
+      "firstName": "Yury",
+      "lastName": "Askerko",
+      "email": "askerko@gmail.com",
+      "username": "u.askerko",
+      "password": "askerkoyury",
+      "role": "User"
+    },
+    {
+      "firstName": "Eugene",
+      "lastName": "Dashkevich",
+      "email": "eugenedashkevich@gmail.com",
+      "username": "dashkevich",
+      "password": "dashkevich",
+      "role": "User"
+    }
+  ]
+}
