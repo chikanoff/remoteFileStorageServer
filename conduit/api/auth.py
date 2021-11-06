@@ -71,16 +71,13 @@ class Register(Resource):
         email = request.json["email"]
         username = request.json["username"]
         password = request.json["password"]
-        checks = User.check_username_and_email(
+        errors = User.check_username_and_email(
             username, email)
-        if checks:
-            response = jsonify(
-                status="fail",
-                message="Username or email already exist",
-                errors=checks,
-            )
-            response.status_code = 403
-            return response
+        if errors:
+            data = {'status': "fail",
+                    'msg': "Username or email already exist", 'errors': errors}
+
+            return data, 403
 
         new_user = User.create(first_name, last_name,
                                email, username, password)
@@ -94,7 +91,5 @@ class Register(Resource):
             token_type="bearer",
         )
         response.status_code = 200
-        response.headers["Cache-Control"] = "no-store"
-        response.headers["Pragma"] = "no-cache"
 
         return response
