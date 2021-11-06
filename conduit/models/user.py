@@ -1,4 +1,5 @@
 from enum import unique
+from sqlalchemy import or_
 from conduit.database import Column, String, Model
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -24,8 +25,17 @@ class User(Model):
 
     @classmethod
     def get_by_username(cls, username):
-        user = cls.query.filter(cls.username == username)
+        user = cls.query.filter(cls.username == username).one_or_none()
         return user
+
+    @classmethod
+    def check_username_and_email(cls, username, email):
+        errs = []
+        if cls.query.filter(cls.username == username).one_or_none() is not None:
+            errs.append({"msg": "username taken"})
+        if cls.query.filter(cls.email == email).one_or_none() is not None:
+            errs.append({"msg": "email taken"})
+        return errs
 
     @classmethod
     def validate_user(cls, username, password):
