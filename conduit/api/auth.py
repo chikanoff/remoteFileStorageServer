@@ -47,13 +47,19 @@ class Login(Resource):
     @ns.response(500, "Internal server error")
     @ns.expect(user_data_model, validate=True)
     def post(self):
-        access_token = create_access_token("urer", fresh=True)
-        response = make_response()
-        response.status_code = 200
         username = request.json["username"]
         password = request.json["password"]
         remember = request.json["remember"]
-        print(username, password, remember)
+        user = User.validate_user(username, password)
+        if user == False:
+            data = {'status': "fail",
+                    'msg': "Wrong username or email"}
+            return data, 403
+
+        access_token = create_access_token("urer", fresh=True)
+        response = make_response(
+            {'status': 'success', 'msg': "User logged successfully"})
+        response.status_code = 200
         set_access_cookies(response, access_token)
         return response
 
@@ -83,13 +89,11 @@ class Register(Resource):
                                email, username, password)
         db.session.add(new_user)
         db.session.commit()
-        access_token = create_access_token(new_user.username)
-        response = jsonify(
-            status="success",
-            message="successfully registered",
-            access_token=access_token,
-            token_type="bearer",
-        )
+
+        access_token = create_access_token("urer", fresh=True)
+        response = make_response(
+            {'status': "success", 'message': "successfully registered"})
         response.status_code = 200
+        set_access_cookies(response, access_token)
 
         return response

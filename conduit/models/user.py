@@ -47,7 +47,7 @@ class User(Model):
         return False
 
     def check_password(self, password):
-        return check_password_hash(self.passwrod, password)
+        return check_password_hash(self.password, password)
 
     def __repr__(self) -> str:
         return self.username
