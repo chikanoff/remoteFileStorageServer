@@ -1,5 +1,5 @@
 from flask import request, make_response, jsonify
-from flask_restx import abort, Namespace, Resource, fields
+from flask_restx import Namespace, Resource, fields
 from flask_jwt_extended import create_access_token, set_access_cookies, jwt_required
 from loguru import logger
 from conduit.utils import get_jwt_identity_from_cookies
