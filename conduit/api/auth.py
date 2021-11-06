@@ -1,7 +1,6 @@
 from flask import request, make_response, jsonify
 from flask_restx import Namespace, Resource, fields
-from flask_jwt_extended import create_access_token, set_access_cookies, jwt_required
-from loguru import logger
+from flask_jwt_extended import create_access_token, set_access_cookies  # , jwt_required
 from conduit.utils import get_jwt_identity_from_cookies
 from conduit.models.user import User
 from conduit.app import db
@@ -17,13 +16,17 @@ user_data_model = ns.model(
     },
     strict=True,
 )
-register_data_model = ns.model("RegisterModel", {
-    "firstName": fields.String(required=True),
-    "lastName": fields.String(required=True),
-    "email": fields.String(required=True),
-    "username": fields.String(required=True),
-    "password": fields.String(required=True),
-}, strict=True)
+register_data_model = ns.model(
+    "RegisterModel",
+    {
+        "firstName": fields.String(required=True),
+        "lastName": fields.String(required=True),
+        "email": fields.String(required=True),
+        "username": fields.String(required=True),
+        "password": fields.String(required=True),
+    },
+    strict=True,
+)
 
 
 @ns.route("/isAdmin")
@@ -35,10 +38,9 @@ class IsAdmin(Resource):
             response = jsonify(status="success", msg="User is not admin")
             response.status_code = 200
             return response
-        else:
-            response = jsonify(status="success", msg="User is admin")
-            response.status_code = 200
-            return response
+        response = jsonify(status="success", msg="User is admin")
+        response.status_code = 200
+        return response
 
 
 @ns.route("/isAuthenticated")
@@ -50,8 +52,7 @@ class IsAuthenticated(Resource):
             response = jsonify(is_authenticated=True, jwt_identity=identity)
             response.status_code = 200
             return response
-        else:
-            return jsonify(is_authenticated=False)
+        return jsonify(is_authenticated=False)
 
 
 @ns.route("/login")
@@ -64,16 +65,14 @@ class Login(Resource):
     def post(self):
         username = request.json["username"]
         password = request.json["password"]
-        remember = request.json["remember"]
+        # remember = request.json["remember"]
         user = User.validate_user(username, password)
         if not user:
-            data = {'status': "fail",
-                    'msg': "Wrong username or email"}
+            data = {"status": "fail", "msg": "Wrong username or email"}
             return data, 403
 
         access_token = create_access_token(username, fresh=True)
-        response = make_response(
-            {'status': 'success', 'msg': "User logged successfully"})
+        response = make_response({"status": "success", "msg": "User logged successfully"})
         response.status_code = 200
         set_access_cookies(response, access_token)
         return response
@@ -92,22 +91,18 @@ class Register(Resource):
         email = request.json["email"]
         username = request.json["username"]
         password = request.json["password"]
-        errors = User.check_username_and_email(
-            username, email)
+        errors = User.check_username_and_email(username, email)
         if errors:
-            data = {'status': "fail",
-                    'msg': "Username or email already exist", 'errors': errors}
+            data = {"status": "fail", "msg": "Username or email already exist", "errors": errors}
 
             return data, 403
 
-        new_user = User.create(first_name, last_name,
-                               email, username, password)
+        new_user = User.create(first_name, last_name, email, username, password)
         db.session.add(new_user)
         db.session.commit()
 
         access_token = create_access_token(username, fresh=True)
-        response = make_response(
-            {'status': "success", 'message': "successfully registered"})
+        response = make_response({"status": "success", "message": "successfully registered"})
         response.status_code = 200
         set_access_cookies(response, access_token)
 

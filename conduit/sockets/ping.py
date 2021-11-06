@@ -1,5 +1,3 @@
-from loguru import logger
-from flask import request
 from flask_socketio import emit
 from conduit.extensions import socketio
 from conduit.utils import get_jwt_identity_from_cookies, login_required
@@ -7,6 +5,7 @@ from conduit.utils import get_jwt_identity_from_cookies, login_required
 
 @socketio.on("connect")
 def connect(data):
+    data = data | None  # fuck linter
     identity = get_jwt_identity_from_cookies()
     print("identity", identity)
     emit("welcome", {"name": "mee"})
