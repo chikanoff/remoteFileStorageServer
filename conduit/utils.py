@@ -15,7 +15,7 @@ def get_jwt_identity_from_cookies():
     if jwt:
         try:
             decoded_token = decode_token(jwt)
-            identity = decoded_token.get("sub")
+            identity = decoded_token.get("sub", None)
             return identity
         except ExpiredSignatureError:
             logger.debug(f"Expired signature in token: {jwt}")
