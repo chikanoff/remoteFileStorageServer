@@ -10,10 +10,16 @@ def main():
         db.drop_all()
         db.create_all()
 
-        with open('sql/users.sql') as f:
-            for line in f.readlines():
-                db.session.execute(line)
-                db.session.commit()
+        db.session.add(User.create("chikanoff", "chikanoff",
+                       "chikanoff", "chikanoff", "chikanoff", "Administrator"))
+        db.session.commit()
+        db.session.add(User.create("user", "user", "user", "user", "user"))
+        db.session.commit()
+
+        # with open('sql/users.sql') as f:
+        #     for line in f.readlines():
+        #         db.session.execute(line)
+        #         db.session.commit()
 
 
 if __name__ == '__main__':
