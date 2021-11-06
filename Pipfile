@@ -13,6 +13,8 @@ loguru = "*"
 flask-jwt-extended = "*"
 flask-bcrypt = "*"
 flask-socketio = "*"
+pre-commit = "*"
+pylint = "*"
 
 [dev-packages]
 autopep8 = "*"

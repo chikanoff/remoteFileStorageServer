@@ -5,22 +5,22 @@ def main():
     app = create_app()
 
     with app.app_context():
+        # pylint: disable=W0611
         from conduit.models.user import User
 
         db.drop_all()
         db.create_all()
 
-        db.session.add(User.create("chikanoff", "chikanoff",
-                       "chikanoff", "chikanoff", "chikanoff", "Administrator"))
-        db.session.commit()
-        db.session.add(User.create("user", "user", "user", "user", "user"))
-        db.session.commit()
+<<<<<<< HEAD
+        with open("sql/users.sql", "r", encoding="utf-8") as f:
+            for line in f.readlines():
+                # pylint: disable-no-member
+                db.session.execute(line)
+                db.session.commit()
+=======
+        
+>>>>>>> main
 
-        # with open('sql/users.sql') as f:
-        #     for line in f.readlines():
-        #         db.session.execute(line)
-        #         db.session.commit()
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

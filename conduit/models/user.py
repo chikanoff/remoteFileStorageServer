@@ -18,8 +18,14 @@ class User(Model):
     @classmethod
     def create(cls, first_name, last_name, email, username, password, role="user"):
         password_hash = generate_password_hash(password)
-        instance = cls(first_name=first_name, last_name=last_name,
-                       email=email, username=username, password=password_hash, role=role)
+        instance = cls(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            username=username,
+            password=password_hash,
+            role=role,
+        )
         return instance
 
     @classmethod
@@ -47,12 +53,8 @@ class User(Model):
 
     @classmethod
     def isAdmin(cls, username):
-        user = cls.query.filter(
-            and_(cls.username == username, cls.role == 'Administrator')).one_or_none()
+        user = cls.query.filter(and_(cls.username == username, cls.role == "Administrator")).one_or_none()
         return user
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
-
-    def __repr__(self) -> str:
-        return self.username

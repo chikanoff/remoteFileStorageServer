@@ -50,9 +50,11 @@ def register_extensions(app: Flask):
     socketio.init_app(app)
 
     # register models
+    # pylint: disable=W0611
     from conduit.models.user import User
 
     # register sockets
+    # pylint: disable=W0611
     from conduit.sockets.ping import connect
 
     if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):

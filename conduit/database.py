@@ -1,3 +1,4 @@
+# pylint: disable-all
 from conduit.extensions import db
 from conduit.models.base_model import BaseModel
 
