@@ -26,6 +26,21 @@ register_data_model = ns.model("RegisterModel", {
 }, strict=True)
 
 
+@ns.route("/isAdmin")
+class IsAdmin(Resource):
+    def get(self):
+        identity = get_jwt_identity_from_cookies()
+        user = User.isAdmin(identity)
+        if user is None:
+            response = jsonify(status="success", msg="User is not admin")
+            response.status_code = 200
+            return response
+        else:
+            response = jsonify(status="success", msg="User is admin")
+            response.status_code = 200
+            return response
+
+
 @ns.route("/isAuthenticated")
 class IsAuthenticated(Resource):
     def get(self):
@@ -56,7 +71,7 @@ class Login(Resource):
                     'msg': "Wrong username or email"}
             return data, 403
 
-        access_token = create_access_token("urer", fresh=True)
+        access_token = create_access_token(username, fresh=True)
         response = make_response(
             {'status': 'success', 'msg': "User logged successfully"})
         response.status_code = 200
@@ -90,7 +105,7 @@ class Register(Resource):
         db.session.add(new_user)
         db.session.commit()
 
-        access_token = create_access_token("urer", fresh=True)
+        access_token = create_access_token(username, fresh=True)
         response = make_response(
             {'status': "success", 'message': "successfully registered"})
         response.status_code = 200
