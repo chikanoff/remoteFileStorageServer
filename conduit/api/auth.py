@@ -51,7 +51,7 @@ class Login(Resource):
         password = request.json["password"]
         remember = request.json["remember"]
         user = User.validate_user(username, password)
-        if user == False:
+        if not user:
             data = {'status': "fail",
                     'msg': "Wrong username or email"}
             return data, 403

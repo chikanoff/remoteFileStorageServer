@@ -1,5 +1,4 @@
-from enum import unique
-from sqlalchemy import or_
+
 from conduit.database import Column, String, Model
 from werkzeug.security import generate_password_hash, check_password_hash
 
