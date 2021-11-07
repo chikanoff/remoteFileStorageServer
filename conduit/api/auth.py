@@ -72,9 +72,7 @@ class Login(Resource):
             return data, 403
 
         access_token = create_access_token(username, fresh=True)
-        isAdmin = User.isAdmin(username) is not None
-        response = make_response(
-            {'status': 'success', 'msg': "User logged successfully", 'is_admin': isAdmin})
+        response = make_response({"status": "success", "msg": "User logged successfully"})
         response.status_code = 200
         set_access_cookies(response, access_token)
         return response
