@@ -1,4 +1,4 @@
-from conduit.database import Column, String, Model, create_fk
+from conduit.database import Column, String, Model, create_fk, relationship
 
 
 class File(Model):
@@ -8,4 +8,5 @@ class File(Model):
     # readonly / private / public
     mode = Column(String(64), nullable=False, default="readonly")
     path = Column(String(256), nullable=False, unique=True)
-    owner = create_fk('users')
+    owner_id = create_fk("users")
+    ownner = relationship("User")
