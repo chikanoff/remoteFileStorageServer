@@ -1,4 +1,5 @@
 from conduit.app import create_app, db
+from fill_db import fill_db
 
 
 def main():
@@ -6,16 +7,11 @@ def main():
 
     with app.app_context():
         # pylint: disable=W0611
-        from conduit.models.user import User
 
         db.drop_all()
         db.create_all()
 
-        with open("sql/users.sql", "r", encoding="utf-8") as f:
-            for line in f.readlines():
-                # pylint: disable-no-member
-                db.session.execute(line)
-                db.session.commit()
+        fill_db()
 
 
 if __name__ == "__main__":
