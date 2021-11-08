@@ -33,7 +33,7 @@ register_data_model = ns.model(
 class IsAdmin(Resource):
     def get(self):
         identity = get_jwt_identity_from_cookies()
-        user = User.isAdmin(identity)
+        user = User.is_admin(identity)
         if user is None:
             response = jsonify(status="success", msg="User is not admin")
             response.status_code = 200
@@ -72,7 +72,8 @@ class Login(Resource):
             return data, 403
 
         access_token = create_access_token(username, fresh=True)
-        response = make_response({"status": "success", "msg": "User logged successfully"})
+        isAdmin = User.is_admin(username)
+        response = make_response({"status": "success", "msg": "User logged successfully", "isAdmin": isAdmin})
         response.status_code = 200
         set_access_cookies(response, access_token)
         return response

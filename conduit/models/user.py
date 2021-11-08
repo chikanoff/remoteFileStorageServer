@@ -52,9 +52,9 @@ class User(Model):
         return False
 
     @classmethod
-    def isAdmin(cls, username):
-        user = cls.query.filter(and_(cls.username == username, cls.role == "Administrator")).one_or_none()
-        return user
+    def is_admin(cls, username):
+        user = cls.query.filter(and_(cls.username == username, cls.role == "admin")).one_or_none()
+        return user is not None
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
