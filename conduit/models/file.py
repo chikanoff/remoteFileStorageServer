@@ -18,10 +18,10 @@ class File(Model):
 
     @classmethod
     def getPublicFiles(cls):
-        # files = cls.query.filter(cls.mode == 'public')
-        return []
+        files = cls.query.filter(cls.mode == 'public')
+        return files
 
     @classmethod
-    def getOne(cls, id):
-        file = cls.query.filter(cls.id == id).first_or_404()
+    def getOne(cls, file_id):
+        file = cls.query.filter(cls.id == file_id).first_or_404()
         return file
