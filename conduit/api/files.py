@@ -1,9 +1,14 @@
 from flask_restx import Namespace, Resource
 from conduit.models.file import File
 
-ns = Namespace("files", path="/files")
+ns = Namespace("files", path = "/files")
 
-
+@ns.route("/adminFiles")
+class getAdminFiles(Resource):
+    def get(self):
+        files = File.getAdminFiles()
+        return files
+        
 @ns.route("/")
 class getPublicFiles(Resource):
     def get(self):
