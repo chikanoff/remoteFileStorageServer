@@ -1,6 +1,6 @@
 from flask import request, make_response, jsonify
 from flask_restx import Namespace, Resource, fields
-from conduit.models.files import File
+from conduit.models.file import File
 from conduit.app import db
 
 ns = Namespace("files", path="/files")

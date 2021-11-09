@@ -52,7 +52,7 @@ def register_extensions(app: Flask):
     # register models
     # pylint: disable=W0611
     from conduit.models.user import User
-    from conduit.models.files import File
+    from conduit.models.file import File
 
     # register sockets
     # pylint: disable=W0611
