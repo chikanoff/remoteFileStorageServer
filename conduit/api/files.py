@@ -9,5 +9,5 @@ ns = Namespace("files", path="/files")
 class getAll(Resource):
     def get(self):
         files = File.getAll()
-        response = make_response({'files': files})
+        response = make_response({"status": "success", "files": files})
         return response
