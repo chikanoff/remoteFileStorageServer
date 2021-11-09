@@ -52,6 +52,7 @@ def register_extensions(app: Flask):
     # register models
     # pylint: disable=W0611
     from conduit.models.user import User
+    from conduit.models.files import File
 
     # register sockets
     # pylint: disable=W0611
@@ -65,6 +66,8 @@ def register_extensions(app: Flask):
     # register namespaces
     from conduit.api.users import ns as users_ns
     from conduit.api.auth import ns as auth_ns
+    from conduit.api.files import ns as files_ns
 
     api.add_namespace(users_ns, "/api/users")
     api.add_namespace(auth_ns, "/api/auth")
+    api.add_namespace(files_ns, "/api/files")
