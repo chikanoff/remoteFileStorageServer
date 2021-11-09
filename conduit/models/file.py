@@ -10,8 +10,18 @@ class File(Model):
     path = Column(String(256), nullable=False, unique=True)
     owner_id = create_fk("users")
     ownner = relationship("User")
-    
+
     @classmethod
-    def getAll(cls):
+    def getAdminFiles(cls):
         files = cls.query.all()
         return files
+
+    @classmethod
+    def getPublicFiles(cls):
+        # files = cls.query.filter(cls.mode == 'public')
+        return []
+
+    @classmethod
+    def getOne(cls, id):
+        file = cls.query.filter(cls.id == id).first_or_404()
+        return file

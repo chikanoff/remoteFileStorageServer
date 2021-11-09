@@ -5,9 +5,16 @@ from conduit.app import db
 
 ns = Namespace("files", path="/files")
 
-@ns.route("/getAll")
-class getAll(Resource):
+@ns.route("/")
+class getPublicFiles(Resource):
     def get(self):
-        files = File.getAll()
-        response = make_response({"status": "success", "files": files})
-        return response
+        files = File.getPublicFiles()
+        return files
+
+@ns.route("/<int:file_id>")
+class getOne(Resource):
+    def get(self, file_id):
+        file = File.getOne(file_id)
+        return file
+        
+
