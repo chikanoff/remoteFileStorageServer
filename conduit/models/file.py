@@ -11,4 +11,7 @@ class File(Model):
     owner_id = create_fk("users")
     ownner = relationship("User")
 
-
+    @classmethod
+    def getAll(cls):
+        files = cls.query.all()
+        return files
