@@ -10,3 +10,8 @@ class File(Model):
     path = Column(String(256), nullable=False, unique=True)
     owner_id = create_fk("users")
     ownner = relationship("User")
+    
+    @classmethod
+    def getAll(cls):
+        files = cls.query.all()
+        return files
