@@ -22,6 +22,6 @@ class File(Model):
         return []
 
     @classmethod
-    def getOne(cls, id):
-        file = cls.query.filter(cls.id == id).first_or_404()
+    def getOne(cls, file_id):
+        file = cls.query.filter(cls.id == file_id).first_or_404()
         return file
