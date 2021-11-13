@@ -68,7 +68,7 @@ class Login(Resource):
         # remember = request.json["remember"]
         user = User.validate_user(username, password)
         if not user:
-            data = {"status": "fail", "msg": "Wrong username or email"}
+            data = {"status": "fail", "msg": "Wrong username or password"}
             return data, 403
 
         access_token = create_access_token(username, fresh=True)

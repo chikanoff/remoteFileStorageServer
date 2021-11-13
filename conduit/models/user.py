@@ -1,4 +1,4 @@
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 from conduit.database import Column, String, Model
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -30,7 +30,7 @@ class User(Model):
 
     @classmethod
     def get_by_username(cls, username):
-        user = cls.query.filter(cls.username == username).one_or_none()
+        user = cls.query.filter(or_(cls.username == username, cls.email == username)).one_or_none()
         return user
 
     @classmethod
