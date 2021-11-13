@@ -11,7 +11,7 @@ def insert_table_from_json(path, model_cls):
         with open(path, "r", encoding="utf-8") as f:
             rows = json.loads(f.read())
             for row in rows:
-                db.session.add(model_cls(**row))
+                db.session.add(model_cls.create(**row))
             db.session.commit()
 
 
