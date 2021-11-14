@@ -1,6 +1,6 @@
 from flask import request, make_response, jsonify
 from flask_restx import Namespace, Resource, fields
-from flask_jwt_extended import create_access_token, set_access_cookies  # , jwt_required
+from flask_jwt_extended import create_access_token, set_access_cookies
 from conduit.utils import get_jwt_identity_from_cookies
 from conduit.models.user import User
 from conduit.app import db
@@ -63,16 +63,16 @@ class Login(Resource):
     @ns.response(500, "Internal server error")
     @ns.expect(user_data_model, validate=True)
     def post(self):
-        username = request.json["username"]
+        username_or_email = request.json["username"]
         password = request.json["password"]
         # remember = request.json["remember"]
-        user = User.validate_user(username, password)
+        user = User.validate_user(username_or_email, password)
         if not user:
             data = {"status": "fail", "msg": "Wrong username or password"}
             return data, 403
 
-        access_token = create_access_token(username, fresh=True)
-        is_admin = User.is_admin(username)
+        access_token = create_access_token(user.username, fresh=True)
+        is_admin = User.is_admin(username_or_email)
         response = make_response({"status": "success", "msg": "User logged successfully", "isAdmin": is_admin})
         response.status_code = 200
         set_access_cookies(response, access_token)
