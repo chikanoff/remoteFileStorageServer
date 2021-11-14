@@ -1,0 +1,86 @@
+[
+  {
+    "name": "AmetTurpisElementum",
+    "description": "description 1",
+    "mode": "public",
+    "path": "storage/128ab3a1-fc48-4231-9fac-98f6b2df6409.jpg",
+    "owner_id": 1
+  },
+  {
+    "name": "LuctusEt",
+    "description": "Andie",
+    "mode": "public",
+    "path": "storage/30235159-49de-402b-9dcd-1fcddb789d26.txt",
+    "owner_id": 1
+  },
+  {
+    "name": "UtOdioCras",
+    "description": "Fiann",
+    "mode": "private",
+    "path": "storage/8bc86be5-f2b7-4a53-ae46-e42889fab456.docx",
+    "owner_id": 1
+  },
+  {
+    "name": "Proin",
+    "description": "Ase",
+    "mode": "public",
+    "path": "storage/d73e4eb8-2ac1-4b47-890e-af433ca1bf5c.txt",
+    "owner_id": 2
+  },
+  {
+    "name": "IntegerPede",
+    "description": "Philip",
+    "mode": "private",
+    "path": "storage/2db38545-84af-4933-b72f-651872e6bbdb.html",
+    "owner_id": 2
+  },
+  {
+    "name": "SemMauris",
+    "description": "Leoline",
+    "mode": "private",
+    "path": "storage/df1bd39b-cf5f-406e-972b-5dc09502848b.png",
+    "owner_id": 2
+  },
+  {
+    "name": "Setmget",
+    "description": "Clarissa",
+    "mode": "public",
+    "path": "storage/7ed3d252-6d0f-452e-90d4-35d05a4feedd.txt",
+    "owner_id": 3
+  },
+  {
+    "name": "OrciLuctus",
+    "description": "Kania",
+    "mode": "readonly",
+    "path": "storage/084f206c-f5b4-4a75-a8fe-5ffc4cc2b42d.jpg",
+    "owner_id": 3
+  },
+  {
+    "name": "gsfgmkdf",
+    "description": "Bobina",
+    "mode": "readonly",
+    "path": "storage/9ef4e721-2f76-4b04-9c2b-a8eb72080a66.docx",
+    "owner_id": 3
+  },
+  {
+    "name": "VolutpatQuamPede",
+    "description": "Evita",
+    "mode": "public",
+    "path": "storage/cd0f8423-721e-481c-9c59-0d51668e12c9.pdf",
+    "owner_id": 4
+  },
+  {
+    "name": "Vestibulum",
+    "description": "Lani",
+    "mode": "public",
+    "path": "storage/c5d4a26a-528e-43ed-959f-5350db27c949.docx",
+    "owner_id": 4
+  },
+  {
+    "name": "LuctusEtUltrices",
+    "description": "Gunther",
+    "mode": "private",
+    "path": "storage/c2281d8c-3e47-4d76-839c-b45e65c2014c.tar",
+    "owner_id": 4
+  }
+]
