@@ -64,10 +64,8 @@ def register_extensions(app: Flask):
 
     api.init_app(app)
     # register namespaces
-    from conduit.api.users import ns as users_ns
     from conduit.api.auth import ns as auth_ns
     from conduit.api.files import ns as files_ns
 
-    api.add_namespace(users_ns, "/api/users")
     api.add_namespace(auth_ns, "/api/auth")
     api.add_namespace(files_ns, "/api/files")

@@ -55,6 +55,12 @@ class IsAuthenticated(Resource):
         return jsonify(is_authenticated=False)
 
 
+@ns.route("/currentUser")
+class CurrentUser(Resource):
+    def get(self):
+        return get_jwt_identity_from_cookies()
+
+
 @ns.route("/login")
 class Login(Resource):
     @ns.response(200, "Logged in successfully")

@@ -18,7 +18,7 @@ class File(Model):
 
     @classmethod
     def getPublicFiles(cls):
-        files = cls.query.filter(cls.mode == "public")
+        files = cls.query.filter(cls.mode == "public").all()
         return files
 
     @classmethod
