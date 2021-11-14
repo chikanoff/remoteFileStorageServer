@@ -9,7 +9,7 @@ class File(Model):
     mode = Column(String(64), nullable=False, default="readonly")
     path = Column(String(256), nullable=False, unique=True)
     owner_id = create_fk("users")
-    ownner = relationship("User")
+    owner = relationship("User")
 
     @classmethod
     def getAdminFiles(cls):
