@@ -25,7 +25,7 @@ class getAdminFiles(Resource):
         return files
 
 
-@ns.route("/")
+@ns.route("/all")
 class getPublicFiles(Resource):
     @ns.marshal_list_with(file_model)
     def get(self):
