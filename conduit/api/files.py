@@ -39,3 +39,10 @@ class getOne(Resource):
     def get(self, file_id):
         file = File.getOne(file_id)
         return file
+
+@ns.route("/filesFromUser/<int:user_id>")
+class getFilesFromUser(Resource):
+    def get(self, user_id):
+        files = File.getUserFiles(user_id)
+        return files
+

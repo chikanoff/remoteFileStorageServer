@@ -17,6 +17,11 @@ class File(Model):
         return files
 
     @classmethod
+    def getUserFiles(cls, user_id):
+        files = cls.query.filter(cls.owner_id == user_id).all()
+        return files
+
+    @classmethod
     def getPublicFiles(cls):
         files = cls.query.filter(cls.mode == "public").all()
         return files
