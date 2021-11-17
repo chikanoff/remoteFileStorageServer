@@ -15,7 +15,7 @@ class DevelopmentConfig:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # flask_jwt_extended
-    JWT_ACCESS_TOKEN_EXPIRES = dt.timedelta(minutes=1)
+    JWT_ACCESS_TOKEN_EXPIRES = dt.timedelta(minutes=15)
 
     # loguru configuration
     LOG_BACKTRACE = True

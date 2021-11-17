@@ -1,5 +1,7 @@
 from flask_restx import Namespace, Resource, fields
 from conduit.models.file import File
+from conduit.utils import get_jwt_identity_from_cookies
+from conduit.models.user import User
 
 ns = Namespace("files", path="/files")
 
@@ -40,9 +42,12 @@ class getOne(Resource):
         file = File.getOne(file_id)
         return file
 
-@ns.route("/filesFromUser/<int:user_id>")
+@ns.route("/filesFromUser")
 class getFilesFromUser(Resource):
-    def get(self, user_id):
+    @ns.marshal_list_with(file_model)
+    def get(self):
+        username = get_jwt_identity_from_cookies()
+        user_id = User.get_by_username(username).id
         files = File.getUserFiles(user_id)
         return files
 
