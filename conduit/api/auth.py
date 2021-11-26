@@ -5,7 +5,6 @@ from conduit.utils import get_jwt_identity_from_cookies
 from conduit.models.user import User
 from conduit.app import db
 
-
 ns = Namespace("auth", path="/auth")
 user_data_model = ns.model(
     "LoginModel",

@@ -42,6 +42,14 @@ class getOne(Resource):
         file = File.getOne(file_id)
         return file
 
+    def delete(self, file_id):
+        file = File.get_by_id(file_id)
+        if file:
+            file.delete()
+        else:
+            data = {"status": "fail", "msg": "File wasn't found"}
+            return data, 409
+
 @ns.route("/filesFromUser")
 class getFilesFromUser(Resource):
     @ns.marshal_list_with(file_model)

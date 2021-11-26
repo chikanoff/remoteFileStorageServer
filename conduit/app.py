@@ -47,7 +47,7 @@ def register_extensions(app: Flask):
     jwt.init_app(app)
     bcrypt.init_app(app)
     db.init_app(app)
-    socketio.init_app(app)
+    socketio.init_app(app, cors_allowed_origins="*")
 
     # register models
     # pylint: disable=W0611
@@ -57,6 +57,7 @@ def register_extensions(app: Flask):
     # register sockets
     # pylint: disable=W0611
     from conduit.sockets.ping import connect
+    from conduit.sockets.files import get_file
 
     if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
         with app.app_context():
