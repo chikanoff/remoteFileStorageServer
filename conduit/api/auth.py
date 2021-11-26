@@ -1,6 +1,6 @@
 from flask import request, make_response, jsonify
 from flask_restx import Namespace, Resource, fields
-from flask_jwt_extended import create_access_token, set_access_cookies
+from flask_jwt_extended import create_access_token, set_access_cookies, unset_access_cookies
 from conduit.utils import get_jwt_identity_from_cookies
 from conduit.models.user import User
 from conduit.app import db
@@ -81,6 +81,15 @@ class Login(Resource):
         response = make_response({"status": "success", "msg": "User logged successfully", "isAdmin": is_admin})
         response.status_code = 200
         set_access_cookies(response, access_token)
+        return response
+
+
+@ns.route("/logout")
+class Logout(Resource):
+    def post(self):
+        response = make_response({"status": "success", "msg": "User logged out successfully"})
+        response.status_code = 200
+        unset_access_cookies(response)
         return response
 
 
