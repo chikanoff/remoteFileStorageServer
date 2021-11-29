@@ -15,6 +15,8 @@ def get_file(data):
     print(buf)
     emit('your-file', {'data': buf, 'ext': "." + ext, 'name': file.name})
 
-# @socketio.on('upload-file')
-# def upload_file(data):
+@socketio.on('upload-file')
+def upload_file(data):
+    name = data["name"]
+    print(name)
 
