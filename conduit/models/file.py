@@ -12,6 +12,17 @@ class File(Model):
     owner = relationship("User")
 
     @classmethod
+    def create(cls, name, desc, mode, path, owner_id):
+        instance = cls(
+            name = name, 
+            description = desc, 
+            mode = mode, 
+            path = path, 
+            owner_id = owner_id
+        )
+        return instance.save()
+
+    @classmethod
     def getAdminFiles(cls):
         files = cls.query.all()
         return files
