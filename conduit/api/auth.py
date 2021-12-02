@@ -57,7 +57,11 @@ class IsAuthenticated(Resource):
 @ns.route("/currentUser")
 class CurrentUser(Resource):
     def get(self):
-        return get_jwt_identity_from_cookies()
+        identity = get_jwt_identity_from_cookies()
+        user = User.get_by_username(identity)
+        if not user:
+            return None
+        return {"username": user.username, "isAdmin": User.is_admin(user.username)}
 
 
 @ns.route("/login")
@@ -78,7 +82,9 @@ class Login(Resource):
 
         access_token = create_access_token(user.username, fresh=True)
         is_admin = User.is_admin(username_or_email)
-        response = make_response({"status": "success", "msg": "User logged successfully", "isAdmin": is_admin})
+        response = make_response(
+            {"status": "success", "msg": "User logged successfully", "isAdmin": is_admin, "username": user.username}
+        )
         response.status_code = 200
         set_access_cookies(response, access_token)
         return response
