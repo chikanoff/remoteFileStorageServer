@@ -4,7 +4,6 @@ from flask_socketio import emit
 from conduit.extensions import socketio
 from conduit.models.file import File
 from conduit.models.user import User
-from conduit.utils import get_jwt_identity_from_cookies
 
 
 @socketio.on("get_file")
@@ -16,16 +15,18 @@ def get_file(data):
 
     with open(ROOT_DIR + path, "rb") as f:
         buf = f.read()
+    print(buf)
     emit("your-file", {"data": buf, "ext": "." + ext, "name": file.name})
 
 
 @socketio.on("upload-file")
 def upload_file(data):
-    print(data["desc"])
+    print(data["currUser"])
     ROOT_DIR = os.path.abspath(os.curdir) + "/"
-    owner_id = User.get_by_username(get_jwt_identity_from_cookies()).id
+    owner_id = User.get_by_username(data["currUser"]).id
     path = "storage/" + str(uuid.uuid4()) + "." + data["ext"]
-    File.create(data["name"], data["desc"], data["isPriv"], path, owner_id)
+    isPriv = "private" if data["isPriv"] else "public"
+    File.create(data["name"], data["desc"], str(isPriv), path, owner_id)
 
     with open(ROOT_DIR + path, "wb") as f:
         f.write(data["buf"])

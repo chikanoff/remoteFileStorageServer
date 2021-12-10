@@ -23,7 +23,7 @@ def main():
 
         # fill the table
         insert_table_from_json("insert_data/users.json", User)
-        insert_table_from_json("insert_data/files.json", File)
+        # insert_table_from_json("insert_data/files.json", File)
 
 
 if __name__ == "__main__":
